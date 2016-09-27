@@ -17,13 +17,13 @@ class Node:
         return self.next
 
     def has_next(self):
-        return self.next != None
+        return self.next is not None
 
     def list_length(self):
         current = self.head
         count = 0
 
-        while current != None:
+        while current is not None:
             count += 1
             current = current.get_next()
         return count
@@ -42,7 +42,7 @@ class Node:
         new_node = Node()
         new_node.set_data(data)
         current = self.head
-        while current.get_next() != None:
+        while current.get_next() is not None:
             current = current.get_next()
 
         current.set_next(new_node)
@@ -50,7 +50,7 @@ class Node:
 
     def insert_at_middle(self, position, data):
         if position > self.length or position < 0:
-            return None
+            raise ValueError("Invalid Position.")
         elif position == 0:
             self.insert_at_beginning(data)
         elif position == self.length:
@@ -80,7 +80,7 @@ class Node:
         else:
             current_node = self.head
             previous_node = self.head
-            while current_node.get_next() != None:
+            while current_node.get_next() is not None:
                 previous_node = current_node
                 current_node = current_node.get_next()
             previous_node.set_next(None)
@@ -96,12 +96,12 @@ class Node:
             while not found_flag:
                 if current_node == node:
                     found_flag = True
-                elif current_node == None:
+                elif current_node is None:
                     raise ValueError("Node not Present in Linked List.")
                 else:
                     previous_node = current_node
                     current_node = current_node.get_next()
-        if previous_node == None:
+        if previous_node is None:
             self.head = current_node.get_next()
         else:
             previous_node.set_next(current_node.get_next())
@@ -117,12 +117,12 @@ class Node:
             while not found_flag:
                 if current_node.get_data() == value:
                     found_flag = True
-                elif current_node == None:
+                elif current_node is None:
                     raise ValueError("No Node With Input Data.")
                 else:
                     previous_node = current_node
                     current_node = current_node.get_next()
-            if previous_node == None:
+            if previous_node is None:
                 self.head = current_node.get_next()
             else:
                 previous_node.set_next(current_node.get_next())
@@ -141,7 +141,7 @@ class Node:
                 previous_node = current_node
                 current_node = current_node.get_next()
                 count += 1
-            if previous_node == None:
+            if previous_node is None:
                 self.head = current_node.get_next()
             else:
                 previous_node.set_next(current_node.get_next())
