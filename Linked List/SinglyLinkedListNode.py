@@ -22,11 +22,19 @@ class Node:
     def list_length(self):
         current = self.head
         count = 0
-
         while current is not None:
             count += 1
             current = current.get_next()
         return count
+
+    def print_linked_list(self):
+        if self.head is None:
+            print "Linked List does not Exist."
+        else:
+            current_node = self.head
+            while current_node is not None:
+                print current_node.get_data()
+                current_node = current_node.get_next()
 
     def insert_at_beginning(self, data):
         new_node = Node()
@@ -49,22 +57,24 @@ class Node:
         self.length += 1
 
     def insert_at_middle(self, position, data):
-        if position > self.length or position < 0:
-            raise ValueError("Invalid Position.")
+        if position > self.length+1 or position < 0:
+            return None
         elif position == 0:
             self.insert_at_beginning(data)
-        elif position == self.length:
+        elif position == self.length+1:
             self.insert_at_end(data)
         else:
             new_node = Node()
             new_node.set_data(data)
-            count = 0
-            current = self.head
-            while count < position - 1:
+            count = 1
+            current_node = self.head
+            previous_node = None
+            while count != position:
                 count += 1
-                current = current.get_next()
-            new_node.set_next(current.get_next())
-            current.set_next(new_node)
+                previous_node = current_node
+                current_node = current_node.get_next()
+            new_node.set_next(current_node)
+            previous_node.set_next(new_node)
             self.length += 1
 
     def delete_from_beginning(self):
@@ -131,7 +141,7 @@ class Node:
     def delete_at_position(self, position):
         if self.length == 0:
             raise ValueError("Underflow! Linked List Empty.")
-        elif position > self.length or position < 0:
+        elif position > self.length+1 or position < 0:
             raise ValueError("Invalid Position.")
         else:
             count = 1
