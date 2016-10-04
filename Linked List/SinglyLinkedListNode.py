@@ -156,3 +156,20 @@ class Node:
             else:
                 previous_node.set_next(current_node.get_next())
             self.length -= 1
+
+    def nth_node_from_end(self, n):
+        if n < 0:
+            if n > self.length:
+                raise ValueError("Invalid Position.")
+        else:
+            ptr_nth = self.head
+            ptr_temp = self.head
+            moves = 0
+            while ptr_temp.get_next() is not None:
+                ptr_temp = ptr_temp.get_next()
+                moves += 1
+                if moves == n:
+                    ptr_nth = ptr_nth.get_next()
+                elif moves > n:
+                    ptr_nth = ptr_nth.get_next()
+            print ptr_nth.get_data()
