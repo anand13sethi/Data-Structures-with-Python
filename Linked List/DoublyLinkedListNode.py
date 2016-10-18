@@ -137,3 +137,18 @@ class Node:
             current_node.set_prev(None)
             current_node.set_next(None)
             self.length -= 1
+
+    def detect_cycle(self):
+        fast_ptr = self.head
+        slow_ptr = self.head
+
+        while fast_ptr and slow_ptr:
+            fast_ptr = fast_ptr.get_next()
+            if fast_ptr == slow_ptr:
+                return True
+            if fast_ptr == None:
+                return False
+            fast_ptr = fast_ptr.get_next()
+            if fast_ptr == slow_ptr:
+                return True
+            slow_ptr = slow_ptr.get_next()
