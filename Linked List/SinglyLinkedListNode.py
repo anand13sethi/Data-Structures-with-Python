@@ -173,3 +173,18 @@ class Node:
                 elif moves > n:
                     ptr_nth = ptr_nth.get_next()
             print ptr_nth.get_data()
+
+    def detect_cycle(self):
+        fast_ptr = self.head
+        slow_ptr = self.head
+
+        while fast_ptr and slow_ptr:
+            fast_ptr = fast_ptr.get_next()
+            if fast_ptr == slow_ptr:
+                return True
+            if fast_ptr == None:
+                return False
+            fast_ptr = fast_ptr.get_next()
+            if fast_ptr == slow_ptr:
+                return True
+            slow_ptr = slow_ptr.get_next()
