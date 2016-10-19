@@ -49,7 +49,6 @@ class Node:
     def insert_at_end(self, data):
         new_node = Node()
         new_node.set_data(data)
-        new_node.set_next(self.head.get_next())
         current = self.head
         while current.get_next() is not None:
             current = current.get_next()
