@@ -49,6 +49,7 @@ class Node:
     def insert_at_end(self, data):
         new_node = Node()
         new_node.set_data(data)
+        new_node.set_next(self.head.get_next())
         current = self.head
         while current.get_next() is not None:
             current = current.get_next()
@@ -182,9 +183,26 @@ class Node:
             fast_ptr = fast_ptr.get_next()
             if fast_ptr == slow_ptr:
                 return True
-            if fast_ptr == None:
+            if fast_ptr is None:
                 return False
             fast_ptr = fast_ptr.get_next()
             if fast_ptr == slow_ptr:
                 return True
             slow_ptr = slow_ptr.get_next()
+
+    def detect_cycle_start(self):
+        if self.head is None or self.head.get_next() is None:
+            return False
+        slow_ptr = self.head.get_next()
+        fast_ptr = slow_ptr.get_next()
+        while slow_ptr != fast_ptr:
+            slow_ptr = slow_ptr.get_next()
+            try:
+                fast_ptr = fast_ptr.get_next().get_next()
+            except AttributeError:
+                return False
+        slow_ptr = self.head
+        while slow_ptr != fast_ptr:
+            slow_ptr = slow_ptr.get_next()
+            fast_ptr = fast_ptr.get_next()
+        print slow_ptr.get_data()
