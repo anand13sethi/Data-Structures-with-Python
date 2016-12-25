@@ -209,16 +209,34 @@ class Node:
     def reverse_list(self):
         if self.head is None:
             raise ValueError("Link List Doesn't Exist!")
-        first_pointer = self.head
-        second_pointer = first_pointer.get_next()
-        third_pointer = second_pointer.get_next()
-        first_pointer.set_next(None)
-        while second_pointer is not None:
-            second_pointer.set_next(first_pointer)
-            first_pointer = second_pointer
-            second_pointer = third_pointer
+        else:
+            first_ptr = self.head
+            second_ptr = first_ptr.get_next()
+            third_ptr = second_ptr.get_next()
+            first_ptr.set_next(None)
+            while second_ptr is not None:
+                second_ptr.set_next(first_ptr)
+                first_ptr = second_ptr
+                second_ptr = third_ptr
+                try:
+                    third_ptr = third_ptr.get_next()
+                except AttributeError:
+                    third_ptr = None
+            self.head = first_ptr
+
+    def find_median(self):
+        if self.head is None:
+            raise ValueError("Link List Doesn't Exist!")
+        else:
+            slow_ptr = self.head
+            fast_ptr = self.head
             try:
-                third_pointer = third_pointer.get_next()
+                while fast_ptr.get_next() is not None:
+                    fast_ptr = fast_ptr.get_next()
+                    if fast_ptr.get_next() is None:
+                        return slow_ptr.get_data()
+                    fast_ptr = fast_ptr.get_next()
+                    slow_ptr = slow_ptr.get_next()
             except AttributeError:
-                third_pointer = None
-        self.head = first_pointer
+                fast_ptr = None
+            return slow_ptr.get_data()
