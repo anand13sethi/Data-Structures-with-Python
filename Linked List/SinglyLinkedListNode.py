@@ -205,3 +205,20 @@ class Node:
             slow_ptr = slow_ptr.get_next()
             fast_ptr = fast_ptr.get_next()
         print slow_ptr.get_data()
+
+    def reverse_list(self):
+        if self.head is None:
+            raise ValueError("Link List Doesn't Exist!")
+        first_pointer = self.head
+        second_pointer = first_pointer.get_next()
+        third_pointer = second_pointer.get_next()
+        first_pointer.set_next(None)
+        while second_pointer is not None:
+            second_pointer.set_next(first_pointer)
+            first_pointer = second_pointer
+            second_pointer = third_pointer
+            try:
+                third_pointer = third_pointer.get_next()
+            except AttributeError:
+                third_pointer = None
+        self.head = first_pointer
