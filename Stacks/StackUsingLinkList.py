@@ -1,9 +1,12 @@
-class Stack_LL():
+# Stack implementation using Link List.
+# Growth and Shrinking is more graceful than dynamic array.
+
+
+class Stack():
     def __init__(self):
         self.data = None
         self.next = None
-        self.head = None
-        self.length = 0
+        self.length = -1
 
     def set_data(self, data):
         self.data = data
@@ -21,7 +24,7 @@ class Stack_LL():
         return self.length
 
     def print_stack(self):
-        if self.head is None:
+        if self.length < 0:
             raise ValueError("Empty Stack!")
         current_node = self.head
         while current_node is not None:
@@ -29,17 +32,17 @@ class Stack_LL():
             current_node = current_node.get_next()
 
     def push(self, data):
-        new_node = Stack_LL()
+        new_node = Stack()
         new_node.set_data(data)
-        if self.head is None:
+        if self.length < 0:
             self.head = new_node
         else:
             new_node.set_next(self.head)
             self.head = new_node
-        self.length +=1
+        self.length += 1
 
     def pop(self):
-        if self.head is None:
+        if self.length < 0:
             raise ValueError("Underflow!")
         current_node = self.head
         self.head = current_node.get_next()

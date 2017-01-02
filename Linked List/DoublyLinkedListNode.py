@@ -1,3 +1,6 @@
+# Doubly Link List implementation, with Floyd's Cycle Detection algorithm.
+
+
 class Node:
     def __init__(self, data=None, next=None, prev=None):
         self.data = data
