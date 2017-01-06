@@ -2,7 +2,7 @@
 # Growth and Shrinking is more graceful than dynamic array.
 
 
-class Stack():
+class Stack:
     def __init__(self):
         self.data = None
         self.next = None
@@ -56,3 +56,6 @@ class Stack():
             raise ValueError("Peeking In Empty Stack!")
         current_node = self.head
         return current_node.get_data()
+
+    def is_empty(self):
+        return self.length == -1

@@ -18,8 +18,8 @@ class Stack:
         if self.length < 0:
             raise ValueError("Underflow!")
         else:
-            self.stklist.pop()
             self.length -= 1
+            return self.stklist.pop()
 
     def peek(self):
         if self.length < 0:
@@ -35,3 +35,6 @@ class Stack:
     def stack_length(self):
         print "Total Length: " + str(self.limit)
         print "Elements In Stack: " + str(self.length + 1)
+
+    def is_empty(self):
+        return len(self.stklist) == 0

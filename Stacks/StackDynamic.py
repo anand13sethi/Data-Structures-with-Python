@@ -15,8 +15,8 @@ class Stack:
         if self.length < 0:
             raise ValueError("UnderFlow!")
         else:
-            self.stklist.pop()
             self.length -= 1
+            return self.stklist.pop()
 
     def peek(self):
         if self.length < 0:
@@ -25,4 +25,7 @@ class Stack:
             return self.stklist[self.length]
 
     def stack_length(self):
-        return self.length+1
+        return self.length + 1
+
+    def is_empty(self):
+        return len(self.stklist) == 0
