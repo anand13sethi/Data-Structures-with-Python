@@ -1,7 +1,9 @@
-# Checks wheather opening symbols and closing symbols viz. "(, {, [, }, ), ]" are balanced.
+# Checks if opening symbols and closing symbols viz. "(, {, [, }, ), ]" are balanced.
 
 
 from StackDynamicArray import Stack
+
+
 def matches(strng,complstrng):
     if strng == "]":
         strng = "["
@@ -10,6 +12,7 @@ def matches(strng,complstrng):
     elif strng == "}":
         strng = "{"
     return strng == complstrng
+
 
 def balance_symbols(inp):
     symbol_stack = Stack()
