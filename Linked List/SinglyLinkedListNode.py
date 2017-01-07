@@ -209,7 +209,8 @@ class Node:
             fast_ptr = fast_ptr.get_next()
         print slow_ptr.get_data()
 
-    def reverse_list(self):
+    def reverse_list(self, list_head):
+        self.head = list_head
         if self.head is None:
             raise ValueError("Link List Doesn't Exist!")
         else:
@@ -226,6 +227,7 @@ class Node:
                 except AttributeError:
                     third_ptr = None
             self.head = first_ptr
+            return self.head
 
     def find_median(self):
         if self.head is None:
@@ -237,9 +239,26 @@ class Node:
                 while fast_ptr.get_next() is not None:
                     fast_ptr = fast_ptr.get_next()
                     if fast_ptr.get_next() is None:
-                        return slow_ptr.get_data()
+                        return slow_ptr
                     fast_ptr = fast_ptr.get_next()
                     slow_ptr = slow_ptr.get_next()
             except AttributeError:
                 fast_ptr = None
-            return slow_ptr.get_data()
+            return slow_ptr
+
+    def is_palindrome(self):
+        mid_node = self.find_median()
+        new_head = mid_node.get_next()
+        first_half_ptr = self.head
+        second_half_ptr = self.reverse_list(new_head)
+        flag = False
+        while first_half_ptr != mid_node or second_half_ptr is not None:
+            if first_half_ptr.get_data() == second_half_ptr.get_data():
+                flag = True
+                first_half_ptr = first_half_ptr.get_next()
+                second_half_ptr = second_half_ptr.get_next()
+            else:
+                self.reverse_list(new_head)
+                return False
+        self.reverse_list(new_head)
+        return flag
