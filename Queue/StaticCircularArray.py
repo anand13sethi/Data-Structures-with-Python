@@ -30,12 +30,12 @@ class Queue:
 
     def queue_rear(self):
         if self.is_empty():
-            raise ValueError("Empty Stack!")
+            raise ValueError("Empty Queue!")
         else:
             return self.queue[self.rear]
 
     def queue_front(self):
         if self.is_empty():
-            raise ValueError("Empty Stack!")
+            raise ValueError("Empty Queue!")
         else:
             return self.queue[self.front]
