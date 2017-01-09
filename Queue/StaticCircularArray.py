@@ -4,7 +4,7 @@
 class Queue:
     def __init__(self, limit=10):
         self.queue = [None] * limit
-        self.front = 0
+        self.front = -1
         self.rear = limit - 1
         self.limit = limit
         self.size = 0
