@@ -73,14 +73,3 @@ class Stack:
                 self.que1.enqueue(self.que2.dequeue())
             self.size -= 1
             return self.que2.dequeue()
-
-stk = Stack()
-for i in range(0, 6):
-    stk.push(i)
-
-print stk.pop()
-print stk.pop()
-print stk.pop()
-print stk.pop()
-print stk.pop()
-print stk.pop()
