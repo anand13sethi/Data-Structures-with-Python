@@ -7,9 +7,10 @@ import Queue
 def preorder_recursive(root, result):
     if root is None:
         return
-    result.append(root.data())
-    preorder_recursive(root.left, result)
-    preorder_recursive(root.right, result)
+    result.append(root.get_data())
+    preorder_recursive(root.get_left(), result)
+    preorder_recursive(root.get_right(), result)
+    return result
 
 
 def preorder_iterative(root, result):
@@ -18,19 +19,21 @@ def preorder_iterative(root, result):
     stack = [root]
     while stack:
         node = stack.pop()
-        result.append(node.data)
-        if node.right:
-            stack.append(node.right)
-        if node.left:
-            stack.append(node.left)
+        result.append(node.get_data())
+        if node.get_right():
+            stack.append(node.get_right())
+        if node.get_left():
+            stack.append(node.get_left())
+    return result
 
 
 def inorder_recursive(root, result):
     if root is None:
         return
-    inorder_recursive(root.left, result)
-    result.append(root.data)
-    inorder_recursive(root.right, result)
+    inorder_recursive(root.get_left(), result)
+    result.append(root.get_data())
+    inorder_recursive(root.get_right(), result)
+    return result
 
 
 def inorder_iterative(root, result):
@@ -41,19 +44,21 @@ def inorder_iterative(root, result):
     while stack or node:
         if node:
             stack.append(node)
-            node = node.left
+            node = node.get_left()
         else:
             node = stack.pop()
-            result.append(node.data)
-            node = node.right
+            result.append(node.get_data())
+            node = node.get_right()
+    return result
 
 
 def postorder_recursive(root, result):
     if root is None:
         return
-    postorder_recursive(root.left, result)
-    postorder_recursive(root.right, result)
-    result.append(root.data)
+    postorder_recursive(root.get_left(), result)
+    postorder_recursive(root.get_right(), result)
+    result.append(root.get_data())
+    return result
 
 
 def postorder_iterative(root, result):
@@ -65,16 +70,17 @@ def postorder_iterative(root, result):
     while stack or node:
         if node:
             stack.append(node)
-            node = node.left
+            node = node.get_left()
         else:
             node = stack.pop()
-            if node.right and node.right not in visited:
+            if node.get_right() and node.get_right() not in visited:
                 stack.append(node)
-                node = node.right
+                node = node.get_right()
             else:
-                result.append(node.data)
+                result.append(node.get_data())
                 visited.add(node)
                 node = None
+    return result
 
 
 def levelorder(root, result):
@@ -85,8 +91,9 @@ def levelorder(root, result):
     queue.put(node)
     while not queue.empty():
         node = queue.get()
-        result.append(node.data)
+        result.append(node.get_data())
         if node.left:
-            queue.put(node.left)
+            queue.put(node.get_left())
         if node.right:
-            queue.put(node.right)
+            queue.put(node.get_right())
+    return result
