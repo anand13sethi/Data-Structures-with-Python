@@ -2,8 +2,8 @@
 
 
 class BinaryTreeNode:
-    def __init__(self):
-        self.data = None
+    def __init__(self, data=None):
+        self.data = data
         self.right = None
         self.left = None
 
@@ -18,3 +18,19 @@ class BinaryTreeNode:
 
     def get_right(self):
         return self.right
+
+    def insert_left(self, data):
+        if self.left is None:
+            self.left = BinaryTreeNode(data)
+        else:
+            new_node = BinaryTreeNode(data)
+            new_node.left = self.left
+            self.left = new_node
+
+    def insert_right(self, data):
+        if self.right is None:
+            self.right = BinaryTreeNode(data)
+        else:
+            new_node = BinaryTreeNode(data)
+            new_node.right = self.right
+            self.right = new_node
